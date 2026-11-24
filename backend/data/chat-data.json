@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "a95e7e06-1b1a-40ed-b882-1e39adb2c508",
+      "username": "nishhh",
+      "salt": "83bc3e5b064204a50ca733cf5b2462b3",
+      "passwordHash": "62ec56fd6f6ab0fb1d47bf2d1f1ccb6a8167c4835c9bbafb8f17feb33bcac33241d157e2fcb4227f11dbf0f343f83a1314b410ad32039b03a9fa345efc34ed58",
+      "createdAt": "2026-11-24T18:16:40.933Z"
+    },
+    {
+      "id": "16098a8a-5618-43e8-acf5-4fbaa3e53527",
+      "username": "aryannn",
+      "salt": "63a891bafd5235bd489cf9b34df242a1",
+      "passwordHash": "09e66043a44a303d295e8e4d023051e5d118e9b241c3f72e73fec7e194888a11adb8dc70dcef3dcfbb21e2a1606682deb26f32d9b3405ec4b7bce7aaac6a41c2",
+      "createdAt": "2026-11-24T18:17:29.983Z"
+    }
+  ],
+  "messages": [
+    {
+      "id": "f473ac0c-18e2-467e-9baf-3c5985ec88a3",
+      "senderId": "16098a8a-5618-43e8-acf5-4fbaa3e53527",
+      "recipientId": "a95e7e06-1b1a-40ed-b882-1e39adb2c508",
+      "text": "hiii",
+      "createdAt": "2026-11-24T18:17:38.059Z",
+      "readAt": null
+    },
+    {
+      "id": "16d00499-02ce-42f3-b28c-188fcadfaef7",
+      "senderId": "a95e7e06-1b1a-40ed-b882-1e39adb2c508",
+      "recipientId": "16098a8a-5618-43e8-acf5-4fbaa3e53527",
+      "text": "omgg hiii~",
+      "createdAt": "2026-11-24T18:17:49.561Z",
+      "readAt": "2026-11-24T18:17:49.599Z"
+    }
+  ]
+}

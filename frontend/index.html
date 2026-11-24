@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#f4d9eb"><title>bestie.exe — cozy chat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css"><script src="https://cdn.socket.io/4.8.4/socket.io.min.js"></script>
+</head>
+<body>
+<div class="desktop-sparkles" aria-hidden="true"><span class="sticker s1">✦</span><span class="sticker s2">♡</span><span class="sticker s3">✿</span><span class="sticker s4">★</span><span class="sticker s5">୨୧</span><span class="sticker s6">☾</span><span class="sticker s7">✧</span><span class="sticker s8">♡</span></div>
+<div id="authScreen" class="auth-screen">
+ <form id="authForm" class="auth-card">
+  <div class="auth-decoration">🌷　♡　🌙</div><div class="auth-brand">bestie.exe</div><p class="auth-subtitle">a tiny cozy corner for your conversations</p>
+  <div class="auth-tabs"><button type="button" class="auth-tab active" data-mode="login">Log in</button><button type="button" class="auth-tab" data-mode="register">Create account</button></div>
+  <label class="auth-label">USERNAME<input id="authUsername" required minlength="3" maxlength="20" autocomplete="username" placeholder="your cute username"></label>
+  <label class="auth-label">PASSWORD<input id="authPassword" required minlength="6" type="password" autocomplete="current-password" placeholder="at least 6 characters"></label>
+  <button class="auth-submit" type="submit" id="authSubmit">Enter chat ♡</button><p id="authError" class="auth-error"></p>
+  <small>Accounts are stored by your local demo server.</small>
+ </form>
+</div>
+<main class="app-shell" id="appShell" hidden>
+ <header class="titlebar"><div class="window-title"><span class="title-icon">♡</span><span>bestie.exe — cozy corner chat</span></div><div class="window-controls"><button type="button" title="Minimize">−</button><button type="button" title="Maximize">□</button><button class="close" id="logoutBtn" title="Log out">×</button></div></header>
+ <div class="toolbar"><div class="brand-mark"><span class="brand-heart">♥</span><div><strong>bestie chat</strong><small>your little happy place</small></div></div><div class="toolbar-actions"><button class="tool-btn active" data-tab="chats">💌 <span>Chats</span></button><button class="tool-btn" data-tab="friends">🌷 <span>Friends</span></button><button class="tool-btn" data-tab="media">🗂️ <span>Media</span></button></div><div class="profile-chip"><span class="mini-avatar">🧸</span><span id="myUsername">you</span><span class="online-dot"></span></div></div>
+ <section class="workspace">
+  <aside class="sidebar"><div class="sidebar-heading"><div><span class="eyebrow">YOUR SPACE</span><h1>Messages <span>♡</span></h1></div><button id="newChatBtn" class="square-btn" title="Refresh friends">＋</button></div>
+   <label class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="find a bestie..." autocomplete="off"></label>
+   <div class="filter-row"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="unread">Unread</button><button class="filter" data-filter="online">Online</button></div>
+   <div class="section-label">PEOPLE <span>✧</span></div><div id="contactList" class="contact-list"></div>
+   <div class="sidebar-note"><span>🌼</span><div><strong>little reminder</strong><small>you are someone's favourite notification.</small></div></div>
+  </aside>
+  <section class="chat-panel"><header class="chat-header"><div class="chat-person"><div id="activeAvatar" class="avatar large">💌</div><div><h2 id="activeName">Choose a friend</h2><p><span id="presenceDot" class="presence-dot"></span><span id="activePresence">select someone to chat</span></p></div></div><div class="chat-header-actions"><button id="searchInChat" title="Search conversation">⌕</button><button id="moreBtn" title="More options">•••</button></div></header>
+   <div class="connection-strip"><span class="connection-light" id="connectionLight"></span><span id="connectionText">Connecting...</span><span class="secure-label">✦ cozy connection</span></div>
+   <div id="messages" class="messages" aria-live="polite"><div class="empty-chat"><span>💗</span><p>pick a friend and say hello</p></div></div><div id="typingLine" class="typing-line"></div>
+   <form id="composer" class="composer"><div class="composer-tools"><button type="button" id="emojiBtn" title="Add emoji">☺</button></div><input id="messageInput" type="text" placeholder="type a sweet message..." autocomplete="off" maxlength="2000" disabled><button class="send-btn" type="submit" aria-label="Send message">➤</button></form>
+   <div class="composer-hint"><span>press enter to send</span><span>made with ♡ and a little sparkle</span></div>
+  </section>
+  <aside class="details-panel"><div class="details-top"><span>✧</span> CHAT DETAILS <span>✧</span></div><div id="detailAvatar" class="detail-avatar">♡</div><h3 id="detailName">Your friend</h3><p id="detailStatus" class="detail-status">your conversations, in one cozy place</p><div class="detail-divider"></div><div class="detail-action"><span>▧</span><span>One-to-one chat</span><b>♡</b></div><div class="detail-action"><span>✓✓</span><span>Read receipts</span><b>on</b></div><div class="polaroid"><div class="polaroid-art">🌙　🌷<br>　♡<br>🌷　☁️</div><p>good chats, soft hearts</p></div></aside>
+ </section><footer class="statusbar"><span>✿ bestie chat v1.1</span><span id="footerStatus">waiting for connection...</span><span>♡ always here for you</span></footer>
+</main>
+<div id="toast" class="toast" role="status"></div>
+<div id="emojiPicker" class="emoji-picker" hidden><button type="button">♡</button><button type="button">💕</button><button type="button">✨</button><button type="button">🥹</button><button type="button">🌷</button><button type="button">🧸</button><button type="button">😭</button><button type="button">🫶</button><button type="button">☁️</button><button type="button">🍓</button><button type="button">🌙</button><button type="button">💗</button></div>
+<script src="./app.js"></script>
+</body></html>
